@@ -1,3 +1,8 @@
 class AppointmentSerializer < ActiveModel::Serializer
-  attributes :physician_id, :patient_id, :appointment_type, :appointment_date
+  attributes  :patient_id, :appointment_type, :appointment_date, :physician_name
+
+  def physician_name
+    object.physician.name
+    object.patient.name
+  end
 end
