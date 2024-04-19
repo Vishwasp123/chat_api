@@ -10,20 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_18_121547) do
-  create_table "chat_users", force: :cascade do |t|
-    t.integer "chat_id", null: false
-    t.integer "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["chat_id"], name: "index_chat_users_on_chat_id"
-    t.index ["user_id"], name: "index_chat_users_on_user_id"
-  end
-
+ActiveRecord::Schema[7.0].define(version: 2024_04_19_080249) do
   create_table "chats", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "chats_users", force: :cascade do |t|
+    t.integer "chat_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_id"], name: "index_chats_users_on_chat_id"
+    t.index ["user_id"], name: "index_chats_users_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -42,8 +42,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_18_121547) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "chat_users", "chats"
-  add_foreign_key "chat_users", "users"
+  add_foreign_key "chats_users", "chats"
+  add_foreign_key "chats_users", "users"
   add_foreign_key "messages", "chats"
   add_foreign_key "messages", "users"
 end

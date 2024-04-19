@@ -2,11 +2,13 @@ class Api::UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
 
   def index
+  	# debugger
     @users = User.all 
     render json: @users
   end
 
   def show 
+    # render json: current_user, include: ['chats']
     render json: @user
   end
 
@@ -36,7 +38,7 @@ class Api::UsersController < ApplicationController
   private 
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
   end
 
   def user_params

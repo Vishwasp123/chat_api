@@ -1,3 +1,7 @@
 class ChatSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :title
+
+  def messages
+    object.messages
+  end
 end

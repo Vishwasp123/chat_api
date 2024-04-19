@@ -1,5 +1,5 @@
 class Api::MessagesController < ApplicationController
-  before_action :set_message, only: [:show, :destroy, :update] # Changed `%i[...]` to `[:...]`
+  before_action :set_message, only: [:show, :destroy, :update] 
 
   def index
     @messages = Message.all 
@@ -7,10 +7,12 @@ class Api::MessagesController < ApplicationController
   end
 
   def show
+  	
     render json: @message
   end
 
   def create
+  	# binding.pry
     @message = Message.new(messages_params)
     if @message.save
       render json: @message
@@ -23,7 +25,7 @@ class Api::MessagesController < ApplicationController
     if @message.update(messages_params)
       render json: @message
     else 
-      render json: @message.errors, status: :unprocessable_entity # Changed `@message` to `@message.errors`
+      render json: @message.errors, status: :unprocessable_entity 
     end
   end
 
@@ -35,7 +37,7 @@ class Api::MessagesController < ApplicationController
   private 
   
   def messages_params
-    params.require(:message).permit(:text, :chat_id, :user_id) # Added commas between permitted attributes
+    params.require(:message).permit(:text, :chat_id, :user_id)
   end
 
   def set_message
