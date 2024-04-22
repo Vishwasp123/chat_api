@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_19_113211) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_20_093957) do
   create_table "appointments", force: :cascade do |t|
     t.integer "physician_id"
     t.integer "patient_id"
@@ -51,6 +51,18 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_19_113211) do
     t.index ["user_id"], name: "index_chats_users_on_user_id"
   end
 
+  create_table "events", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "forums", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "messages", force: :cascade do |t|
     t.string "text"
     t.integer "chat_id", null: false
@@ -69,6 +81,21 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_19_113211) do
 
   create_table "physicians", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "poly_comments", force: :cascade do |t|
+    t.text "content"
+    t.string "commentable_type", null: false
+    t.integer "commentable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_poly_comments_on_commentable"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

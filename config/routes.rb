@@ -12,6 +12,12 @@ Rails.application.routes.draw do
     resources :physicians
   end
 
+  namespace :polymorphism do 
+    resources :events
+    resources :forums
+    resources :posts
+  end
+
   resources :books 
   resources :authors
 
