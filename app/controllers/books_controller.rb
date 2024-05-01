@@ -11,13 +11,13 @@ class BooksController < ApplicationController
 	end
 
 	def create 
-		# 3,hkgkukmf
+		
 		@book = Book.create(book_params)
 		if @book.save 
 			render json: @book
 		else 
 			render json: @book.errors, status: :unprocessable_entity
-			# ggggg
+			
 		end
 	end
 
